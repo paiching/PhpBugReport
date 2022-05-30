@@ -3,12 +3,15 @@ declare(strict_types = 1);
 
 require_once __DIR__ .'/vendor/autoload.php';
 
-//use App\Helpers\Config;
+$application = new \App\Helpers\App();
+echo $application->getServerTime()->format('Y-m-d H:i:s') . PHP_EOL;
+echo $application->getLogPath() . PHP_EOL;
+echo $application->getEnvironment() . PHP_EOL;
+echo $application->isDebugMode() . PHP_EOL;
 
-//$c = new Config;
-//$config = $c->getFileContent('app');
-
-$config = App\Helpers\Config::getFileContent('app');
-var_dump($config);
-
+if($application->isRunningFromConsole()){
+    echo 'from console';
+}else{
+    echo 'from browser';
+}
 
